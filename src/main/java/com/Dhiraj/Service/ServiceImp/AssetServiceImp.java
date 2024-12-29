@@ -30,12 +30,13 @@ public class AssetServiceImp implements AssetService {
     }
 
     @Override
-    public Asset getAssetByUserAndAssetId(Long userId, Long assetId) {
-        return assetsRepository.findByAssetIdAndUserId(userId,assetId);
+    public Asset getAssetByUserAndAssetId(Long userId, Long id) {
+        return assetsRepository.findByAssetIdAndUserId(id,userId);
     }
 
     @Override
     public List<Asset> getUsersAssets(Long userId) {
+
         return assetsRepository.findByUserId(userId) ;
     }
 

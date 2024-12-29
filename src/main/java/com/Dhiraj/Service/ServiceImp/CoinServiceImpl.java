@@ -25,7 +25,7 @@ public class CoinServiceImpl implements CoinService {
     private final CoinRepository coinRepository;
     private final ObjectMapper objectMapper;
 
-    @Value("${coingecko.api.key}")
+    // @Value("${coingecko.api.key}")
     private String API_KEY;
     @Override
     public List<Coin> getCoinList(int page) throws Exception {
