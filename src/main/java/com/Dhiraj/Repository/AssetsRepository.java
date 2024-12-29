@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AssetsRepository extends JpaRepository<Asset,Long> {
+public interface AssetsRepository extends JpaRepository<Asset, Long> {
     public List<Asset> findByUserId(Long userId);
 
-    Asset findByUserIdAndCoinId(Long userId,String coinId);
-    Asset findByAndUserId(Long assetId,Long userId);
+    Asset findByUserIdAndCoinId(Long userId, String coinId);
+
+    Asset findByAssetIdAndUserId(Long assetId, Long userId);
 }
