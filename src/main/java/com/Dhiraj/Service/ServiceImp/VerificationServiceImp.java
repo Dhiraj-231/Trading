@@ -1,5 +1,7 @@
 package com.Dhiraj.Service.ServiceImp;
 
+import com.Dhiraj.Repository.VerificationRepository;
+import com.Dhiraj.Utils.OtpUtils;
 import org.springframework.stereotype.Service;
 
 import com.Dhiraj.Domain.VerificationType;
@@ -9,38 +11,44 @@ import com.Dhiraj.Service.VerificationService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class VerificationServiceImp implements VerificationService {
+    private final VerificationRepository verificationRepository;
 
     @Override
     public Boolean VerifyOtp(String opt, VerificationCode verificationCode) {
-        // TODO Auto-generated method stub
-        return null;
+        return opt.equals(verificationCode.getOtp());
     }
 
     @Override
     public void deleteVerification(VerificationCode verificationCode) {
-        // TODO Auto-generated method stub
-
+        verificationRepository.delete(verificationCode);
     }
 
     @Override
     public VerificationCode findUsersVerification(User user) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return verificationRepository.findByUserId(user.getId());
     }
 
     @Override
     public VerificationCode findVerificationById(Long id) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<VerificationCode> verificationCodeOptional=verificationRepository.findById(id);
+        if(verificationCodeOptional.isEmpty()) throw new Exception("verification not found..");
+        return verificationCodeOptional.get();
     }
 
     @Override
     public VerificationCode sendVerificationOTP(User user, VerificationType verificationType) {
-        // TODO Auto-generated method stub
-        return null;
+        VerificationCode verificationCode = new VerificationCode();
+
+        verificationCode.setOtp(OtpUtils.generateOTP());
+        verificationCode.setUser(user);
+        verificationCode.setVerificationType(verificationType);
+
+        return verificationRepository.save(verificationCode);
     }
 
 }
