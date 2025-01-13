@@ -27,7 +27,7 @@ public class PaymentController {
     private final UserService userService;
     private final PaymentService paymentService;
 
-    @PostMapping("/api/payment/{paymentMethod}/amount/{amount}")
+    @PostMapping("/{paymentMethod}/amount/{amount}")
     public ResponseEntity<PaymentResponse> paymentHandler(
             @PathVariable PaymentMethod paymentMethod,
             @PathVariable Long amount,
