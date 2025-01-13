@@ -7,10 +7,10 @@ import com.Dhiraj.Models.User;
 import com.Dhiraj.Repository.PaymentDetailsRepository;
 import com.Dhiraj.Service.PaymentDetailsService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PaymentDetailsServiceImp implements PaymentDetailsService {
 
     private final PaymentDetailsRepository paymentDetailsRepository;
