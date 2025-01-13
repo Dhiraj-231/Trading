@@ -12,33 +12,37 @@ import java.time.LocalDateTime;
 public class GlobelExeptions {
 
     @ExceptionHandler(UserException.class)
-    public ResponseEntity<ErrorDetails> userExceptionHandler(UserException ue, WebRequest req){
-        ErrorDetails errorDetails=new ErrorDetails(ue.getMessage(),req.getDescription(false), LocalDateTime.now());
-      return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorDetails> userExceptionHandler(UserException ue, WebRequest req) {
+        ErrorDetails errorDetails = new ErrorDetails(ue.getMessage(), req.getDescription(false), LocalDateTime.now());
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
     }
-    
+
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ErrorDetails> handleRunTimeException(RuntimeException ex,WebRequest request){
-        ErrorDetails errorDetails=new ErrorDetails(ex.getMessage(),request.getDescription(false),LocalDateTime.now());
-        return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorDetails> handleRunTimeException(RuntimeException ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(ex.getMessage(), request.getDescription(false),
+                LocalDateTime.now());
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
     }
-    
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorDetails> handleOtherExceptions(Exception ex,WebRequest request){
-        ErrorDetails errorDetails=new ErrorDetails(ex.getMessage(),request.getDescription(false),LocalDateTime.now());
-        return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorDetails> handleOtherExceptions(Exception ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(ex.getMessage(), request.getDescription(false),
+                LocalDateTime.now());
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    
+
     @ExceptionHandler(OrderException.class)
-    public ResponseEntity<ErrorDetails> orderExceptionHandler(OrderException oe,WebRequest request){
-        ErrorDetails errorDetails=new ErrorDetails(oe.getMessage(),request.getDescription(false),LocalDateTime.now());
-        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorDetails> orderExceptionHandler(OrderException oe, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(oe.getMessage(), request.getDescription(false),
+                LocalDateTime.now());
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
-    
+
     @ExceptionHandler(WalletException.class)
-    public ResponseEntity<ErrorDetails> walletExceptionHandler(WalletException we,WebRequest request){
-        ErrorDetails errorDetails=new ErrorDetails(we.getMessage(),request.getDescription(false),LocalDateTime.now());
-        return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ErrorDetails> walletExceptionHandler(WalletException we, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(we.getMessage(), request.getDescription(false),
+                LocalDateTime.now());
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
 }
