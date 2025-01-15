@@ -27,27 +27,27 @@ public class WithdrawalController {
 
     @PostMapping("/{amount}")
     public ResponseEntity<?> withdrawalRequest(@PathVariable Long amount,
-                                               @RequestHeader("Authorization") String jwt)
-                                                throws Exception{
-        User user=userService.findUserProfileByJwt(jwt);
-        Wallet userWallet=walletService.getUserWallet(user);
+            @RequestHeader("Authorization") String jwt)
+            throws Exception {
+        User user = userService.findUserProfileByJwt(jwt);
+        Wallet userWallet = walletService.getUserWallet(user);
 
-        Withdrawal withdrawal=withdrawalService.requestWithdrawal(amount,user);
-        walletService.addBalanceToWallet(userWallet,-withdrawal.getAmount());
+        Withdrawal withdrawal = withdrawalService.requestWithdrawal(amount, user);
+        walletService.addBalanceToWallet(userWallet, -withdrawal.getAmount());
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }
 
-    @PatchMapping("/api/admin/withdrawal/{id}/proceed/{accept}")
+    @PatchMapping("/admin/{id}/proceed/{accept}")
     public ResponseEntity<?> proceedWithdrawal(
             @PathVariable Long id,
             @PathVariable boolean accept,
-            @RequestHeader("Authorization")String jwt) throws Exception {
-        User user=userService.findUserProfileByJwt(jwt);
+            @RequestHeader("Authorization") String jwt) throws Exception {
+        User user = userService.findUserProfileByJwt(jwt);
 
-        Withdrawal withdrawal=withdrawalService.procedWithdrawal(id,accept);
+        Withdrawal withdrawal = withdrawalService.procedWithdrawal(id, accept);
 
-        Wallet userWallet=walletService.getUserWallet(user);
-        if(!accept){
+        Wallet userWallet = walletService.getUserWallet(user);
+        if (!accept) {
             walletService.addBalanceToWallet(userWallet, withdrawal.getAmount());
         }
 
@@ -57,21 +57,21 @@ public class WithdrawalController {
     @GetMapping("/withdrawal/history")
     public ResponseEntity<List<Withdrawal>> getWithdrawalHistory(
 
-            @RequestHeader("Authorization")String jwt) throws Exception {
-        User user=userService.findUserProfileByJwt(jwt);
+            @RequestHeader("Authorization") String jwt) throws Exception {
+        User user = userService.findUserProfileByJwt(jwt);
 
-        List<Withdrawal> withdrawal=withdrawalService.getUsersWithdrawalHistory(user);
+        List<Withdrawal> withdrawal = withdrawalService.getUsersWithdrawalHistory(user);
 
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }
 
-    @GetMapping("/withdrawal/request")
+    @GetMapping
     public ResponseEntity<List<Withdrawal>> getAllWithdrawalRequest(
 
-            @RequestHeader("Authorization")String jwt) throws Exception {
-        User user=userService.findUserProfileByJwt(jwt);
+            @RequestHeader("Authorization") String jwt) throws Exception {
+        User user = userService.findUserProfileByJwt(jwt);
 
-        List<Withdrawal> withdrawal=withdrawalService.getAllWithdrawalRequest();
+        List<Withdrawal> withdrawal = withdrawalService.getAllWithdrawalRequest();
 
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }

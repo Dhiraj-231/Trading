@@ -59,10 +59,11 @@ public class WatchlistController {
     public ResponseEntity<Coin> addItemToWatchlist(
             @RequestHeader("Authorization") String jwt,
             @PathVariable String coinId) throws Exception {
-
         User user = userService.findUserProfileByJwt(jwt);
         Coin coin = coinService.findById(coinId);
+        System.out.println("Coin " + coin);
         Coin addedCoin = watchlistService.addItemToWatchList(coin, user);
+        System.out.println("addCoin" + addedCoin);
         return ResponseEntity.ok(addedCoin);
     }
 }
