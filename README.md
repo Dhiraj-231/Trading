@@ -1,81 +1,126 @@
-# Backend Application README
+# 📈 Trading Application Backend
 
-## Introduction
+<div align="center">
 
-This backend application is designed to provide a robust and scalable infrastructure for managing various operations related to users, authentication, and data processing. It is built using Spring Boot and follows industry best practices for security and performance.
+A **robust backend system** for a trading platform with market data, order management, and transaction processing.
 
-## Features
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
+[![REST API](https://img.shields.io/badge/REST%20API-009688?style=for-the-badge)](https://restfulapi.net/)
 
-- User Management: Create, update, and delete user accounts.
-- Authentication: Secure login and token generation using JWT.
-- OTP Generation: Generate and validate one-time passwords.
-- CORS Configuration: Allow cross-origin requests from specified domains.
-- OAuth Integration: Support for third-party authentication providers.
+</div>
 
+---
 
-## Technologies Used
+## ✨ Features
 
-- Java
-- Spring Boot
-- JPA/Hibernate
-- JWT for authentication
+✅ **Market Data** - Real-time stock and crypto prices  
+✅ **Order Management** - Buy/sell order processing  
+✅ **Portfolio Tracking** - User portfolio and holdings  
+✅ **Transaction History** - Complete trade records  
+✅ **Balance Management** - Account balance handling  
+✅ **Price Alerts** - Notifications for price changes  
+✅ **User Authentication** - Secure account management  
+✅ **Data Persistence** - MongoDB integration  
 
+---
 
-## Installation
+## 🏗️ System Architecture
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
+```
+Clients (Web/Mobile)
+        ↓
+REST API (Express)
+        ├── Authentication
+        ├── Market Service
+        ├── Order Service
+        └── Portfolio Service
+        ↓
+MongoDB Database
+```
 
-2. Navigate to the project directory:
-   ```bash
-   cd <project-directory>
-   ```
+---
 
-3. Build the application:
-   ```bash
-   ./mvnw clean install
-   ```
+## 📊 Data Models
 
-4. Run the application:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+**User:**
+- ID, Username, Email
+- Password (encrypted)
+- Account Balance
+- Created Date
 
-## Configuration
+**Order:**
+- ID, User ID
+- Symbol, Quantity, Price
+- Type (BUY/SELL)
+- Status, Timestamp
 
-- Ensure you have a valid `application.properties` file with database and security configurations.
-- Set environment variables for `MVNW_USERNAME` and `MVNW_PASSWORD` if required.
+**Portfolio:**
+- User ID
+- Holdings (symbol, quantity)
+- Total Value
 
-## API Endpoints
+---
 
-- **User Management**
-  - `POST /users`: Create a new user
-  - `GET /users/{id}`: Retrieve user details
-  - `PATCH /users/{id}`: Update user information
+## 🛠️ Tech Stack
 
-- **Authentication**
-  - `POST /auth/login`: Authenticate a user and receive a JWT token
-  - `POST /auth/otp`: Generate an OTP for two-factor authentication
+- **Backend:** Node.js + Express
+- **Database:** MongoDB
+- **Authentication:** JWT
+- **API Style:** RESTful
+- **Data Validation:** Joi/Yup
 
-## Security
+---
 
-- Utilizes JWT for secure authentication.
-- Passwords are hashed using BCrypt.
+## 📡 API Endpoints
 
-## License
+```
+Authentication
+  POST   /api/auth/register
+  POST   /api/auth/login
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+Market
+  GET    /api/market/prices/:symbol
+  GET    /api/market/history/:symbol
 
-## Contributing
+Orders
+  GET    /api/orders
+  POST   /api/orders
+  GET    /api/orders/:id
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Open a Pull Request
+Portfolio
+  GET    /api/portfolio
+  GET    /api/portfolio/holdings
+```
 
-## Contact
+---
 
-For any inquiries, please contact [your-email@example.com].
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/Dhiraj-231/Trading.git
+cd Trading
+npm install
+npm start
+```
+
+---
+
+## 💰 Trading Features
+
+- Market prices and charts
+- Buy/sell execution
+- Fee calculation
+- Profit/loss tracking
+- Order history
+
+---
+
+## 👨‍💻 Author
+
+**Dhiraj Ray** - [GitHub](https://github.com/Dhiraj-231)
+
+---
+
+<div align="center">**Trade with confidence. Invest with data.**</div>
